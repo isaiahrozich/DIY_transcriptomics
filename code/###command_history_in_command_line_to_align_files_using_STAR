@@ -1,0 +1,11 @@
+###command history in command line to align files using STAR
+##following pipeline from: https://www.youtube.com/watch?v=oRC406tbB8w
+% conda activate rnaseq #activate rnaseq conda environment 
+% cd ~/Documents/grad\ school/PhD\ year\ 3/Silverman\ lab/experiments/IR89_RNAsequencing/analysis/ #change to analysis folder in IR89 director
+% mkdir STAR #make directory associated with STAR analysis
+% conda install bioconda::star #install star from conda
+% curl -O https://ftp.ensembl.org/pub/release-111/fasta/mus_musculus/dna/Mus_musculus.GRCm39.dna_sm.primary_assembly.fa.gz #install primary genome assembly file from mouse
+% curl -O https://ftp.ensembl.org/pub/release-111/gtf/mus_musculus/Mus_musculus.GRCm39.111.gtf.gz #install gtf file
+% gunzip *.gz #unzip compressed downloaded files
+% mkdir star_output #make directory to keep all output files associated with star analysis
+% STAR --runMode genomeGenerate --genomeDir star_output/ --genomeFastaFiles Mus_musculus.GRCm39.dna_sm.primary_assembly.fa --sjdbGTFfile Mus_musculus.GRCm39.111.gtf --runThreadN 8 #create the index

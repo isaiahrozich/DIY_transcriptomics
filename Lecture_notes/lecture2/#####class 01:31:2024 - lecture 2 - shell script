@@ -1,0 +1,117 @@
+#####class 01/31/2024 - lecture 2 - shell script
+##follow along on course website: https://protocols.hostmicrobe.org/bash
+
+% DNA="ATCG" #create paramter DNA, it equals "ATCG"
+
+% echo $DNA
+ATCG
+
+% echo ${DNA}U #add a uracil to original ATCG
+ATCGU
+
+% for i in TACG CTAG CCTC GAAT
+for> do
+for> echo "$i is a DNA oligonucleotide"
+for> done
+TACG is a DNA oligonucleotide
+CTAG is a DNA oligonucleotide
+CCTC is a DNA oligonucleotide
+GAAT is a DNA oligonucleotide
+
+% for i in TACG CTAG CCTC GAAT
+do
+        FIX=${i//T/U}
+        echo "$FIX is a RNA oligonucleotide"
+done
+UACG is a RNA oligonucleotide
+CUAG is a RNA oligonucleotide
+CCUC is a RNA oligonucleotide
+GAAU is a RNA oligonucleotide
+
+% for FASTQ in *fastq*
+do
+        OUT=${FASTQ//.fastq.gz/_mapped}
+        LOG=${FASTQ//.fastq.gz/_mapped.log}
+        echo "fastqc $FASTQ"
+        echo "kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o $OUT --single -l 250 -s 30 $FASTQ -t 8 &> $LOG"
+        echo "done mapping reads for $FASTQ"
+done
+fastqc SRR8668755_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668755_10K_subsample_mapped --single -l 250 -s 30 SRR8668755_10K_subsample.fastq.gz -t 8 &> SRR8668755_10K_subsample_mapped.log
+done mapping reads for SRR8668755_10K_subsample.fastq.gz
+fastqc SRR8668756_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668756_10K_subsample_mapped --single -l 250 -s 30 SRR8668756_10K_subsample.fastq.gz -t 8 &> SRR8668756_10K_subsample_mapped.log
+done mapping reads for SRR8668756_10K_subsample.fastq.gz
+fastqc SRR8668757_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668757_10K_subsample_mapped --single -l 250 -s 30 SRR8668757_10K_subsample.fastq.gz -t 8 &> SRR8668757_10K_subsample_mapped.log
+done mapping reads for SRR8668757_10K_subsample.fastq.gz
+fastqc SRR8668758_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668758_10K_subsample_mapped --single -l 250 -s 30 SRR8668758_10K_subsample.fastq.gz -t 8 &> SRR8668758_10K_subsample_mapped.log
+done mapping reads for SRR8668758_10K_subsample.fastq.gz
+fastqc SRR8668759_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668759_10K_subsample_mapped --single -l 250 -s 30 SRR8668759_10K_subsample.fastq.gz -t 8 &> SRR8668759_10K_subsample_mapped.log
+done mapping reads for SRR8668759_10K_subsample.fastq.gz
+fastqc SRR8668769_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668769_10K_subsample_mapped --single -l 250 -s 30 SRR8668769_10K_subsample.fastq.gz -t 8 &> SRR8668769_10K_subsample_mapped.log
+done mapping reads for SRR8668769_10K_subsample.fastq.gz
+fastqc SRR8668771_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668771_10K_subsample_mapped --single -l 250 -s 30 SRR8668771_10K_subsample.fastq.gz -t 8 &> SRR8668771_10K_subsample_mapped.log
+done mapping reads for SRR8668771_10K_subsample.fastq.gz
+fastqc SRR8668772_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668772_10K_subsample_mapped --single -l 250 -s 30 SRR8668772_10K_subsample.fastq.gz -t 8 &> SRR8668772_10K_subsample_mapped.log
+done mapping reads for SRR8668772_10K_subsample.fastq.gz
+fastqc SRR8668773_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668773_10K_subsample_mapped --single -l 250 -s 30 SRR8668773_10K_subsample.fastq.gz -t 8 &> SRR8668773_10K_subsample_mapped.log
+done mapping reads for SRR8668773_10K_subsample.fastq.gz
+fastqc SRR8668774_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668774_10K_subsample_mapped --single -l 250 -s 30 SRR8668774_10K_subsample.fastq.gz -t 8 &> SRR8668774_10K_subsample_mapped.log
+done mapping reads for SRR8668774_10K_subsample.fastq.gz
+##the above is demonstrating how to use a 'for' loop
+
+% for FASTQ in *fastq*
+do
+        OUT=${FASTQ//.fastq.gz/_mapped}
+        LOG=${FASTQ//.fastq.gz/_mapped.log}
+        echo "fastqc $FASTQ"
+        echo "kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o $OUT --single -l 250 -s 30 $FASTQ -t 8 &> $LOG"
+done
+fastqc SRR8668755_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668755_10K_subsample_mapped --single -l 250 -s 30 SRR8668755_10K_subsample.fastq.gz -t 8 &> SRR8668755_10K_subsample_mapped.log
+fastqc SRR8668756_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668756_10K_subsample_mapped --single -l 250 -s 30 SRR8668756_10K_subsample.fastq.gz -t 8 &> SRR8668756_10K_subsample_mapped.log
+fastqc SRR8668757_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668757_10K_subsample_mapped --single -l 250 -s 30 SRR8668757_10K_subsample.fastq.gz -t 8 &> SRR8668757_10K_subsample_mapped.log
+fastqc SRR8668758_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668758_10K_subsample_mapped --single -l 250 -s 30 SRR8668758_10K_subsample.fastq.gz -t 8 &> SRR8668758_10K_subsample_mapped.log
+fastqc SRR8668759_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668759_10K_subsample_mapped --single -l 250 -s 30 SRR8668759_10K_subsample.fastq.gz -t 8 &> SRR8668759_10K_subsample_mapped.log
+fastqc SRR8668769_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668769_10K_subsample_mapped --single -l 250 -s 30 SRR8668769_10K_subsample.fastq.gz -t 8 &> SRR8668769_10K_subsample_mapped.log
+fastqc SRR8668771_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668771_10K_subsample_mapped --single -l 250 -s 30 SRR8668771_10K_subsample.fastq.gz -t 8 &> SRR8668771_10K_subsample_mapped.log
+fastqc SRR8668772_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668772_10K_subsample_mapped --single -l 250 -s 30 SRR8668772_10K_subsample.fastq.gz -t 8 &> SRR8668772_10K_subsample_mapped.log
+fastqc SRR8668773_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668773_10K_subsample_mapped --single -l 250 -s 30 SRR8668773_10K_subsample.fastq.gz -t 8 &> SRR8668773_10K_subsample_mapped.log
+fastqc SRR8668774_10K_subsample.fastq.gz
+kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o SRR8668774_10K_subsample_mapped --single -l 250 -s 30 SRR8668774_10K_subsample.fastq.gz -t 8 &> SRR8668774_10K_subsample_mapped.log
+##this is showing how you can use a for loop to generate code, i.e., each of these lines is an iterative version of the same command run on each individual fastq file
+##.log files - kallisto generates a .json file, which is not recognized by multiqc --> force kallisto to generate a .log file so that later multiqc can find it instead of .json file
+
+% for FASTQ in *fastq*
+do
+        OUT=${FASTQ//.fastq.gz/_mapped}
+        LOG=${FASTQ//.fastq.gz/_mapped.log}
+        fastqc $FASTQ
+        kallisto quant -i Homo_sapiens.GRCh38.cdna.all.index -o $OUT --single -l 250 -s 30 $FASTQ -t 8 &> $LOG
+done
+#this is running the actual command - have to be in the conda rnaseq environment
+
+#can search commands with control+r in terminal line
+
+##how do you run a shell script directly?
+% sudo chmod u+x readMapping.sh #change permissions so that I can execute the shell script
+% chmod 777 readMapping.sh #change permissions so anyone in world can read, write, and execute this shell script
+% ./readMapping.sh #this is what you would type to run the shell script
+
+
