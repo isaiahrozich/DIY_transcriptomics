@@ -65,6 +65,49 @@ Tx.dog <- as_tibble(Tx.dog)
 Tx.dog <- dplyr::rename(Tx.dog, target_id = ensembl_transcript_id_version, 
                     gene_name = external_gene_name)
 
+#lab3 challenge
+##task 1
+ferret.anno <- useMart(biomart = "ENSEMBL_MART_ENSEMBL", dataset = "mpfuro_gene_ensembl")
+ferret.attributes <- listAttributes(ferret.anno)
+Tx.ferret <- getBM(attributes=c('ensembl_transcript_id_version',
+                             'external_gene_name', 
+                             'start_position', 
+                             'end_position',
+                             'entrezgene_id',
+                             'description',
+                             'pfam',
+                             'chromosome_name',
+                             'ensembl_gene_id'),
+                mart = ferret.anno)
+##task 2
+?getSequence
+ifit2 <- getSequence(mart = ferret.anno, 
+                     seqType = 'gene_flank', 
+                     type = 'ensembl_gene_id', 
+                     chromosome = 'GL897268.1', 
+                     start = 109033, 
+                     end = 115170, 
+                     upstream = 1000)
+oas2 <- getSequence(mart = ferret.anno, 
+                    seqType = 'gene_flank', 
+                    type = 'ensembl_gene_id', 
+                    chromosome = 'GL896936.1', 
+                    start = 6756623, 
+                    end = 6777562, 
+                    upstream = 1000)
+##etc.
+seq <- getSequence(mart = ferret.anno, 
+                   seqType = 'gene_flank', 
+                   type = 'hgnc_symbol', 
+                   id = c("IFIT2", "OAS2", "IRF1", "IFNAR1", "MX1"),
+                   upstream = 1000)
+mx1 <- getSequence(mart = ferret.anno, 
+                    seqType = 'gene_flank', 
+                    type = 'ensembl_gene_id', 
+                    chromosome = 'GL896984.1', 
+                    start = 5070379, 
+                    end = 5099577, 
+                    upstream = 1000)
 
 # import Kallisto transcript counts into R using Tximport ----
 # copy the abundance files to the working directory and rename so that each sample has a unique name
